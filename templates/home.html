@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}BTViewer{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+		.checkbox-menu li label {
+			display: block;
+			padding: 3px 10px;
+			clear: both;
+			font-weight: normal;
+			line-height: 1.42857143;
+			color: #333;
+			white-space: nowrap;
+			margin:0;
+			transition: background-color .4s ease;
+		}
+		.checkbox-menu li input {
+			margin: 0px 5px;
+			top: 2px;
+			position: relative;
+		}
+
+		.checkbox-menu li.active label {
+			background-color: #cbcbff;
+			font-weight:bold;
+		}
+
+		.checkbox-menu li label:hover,
+		.checkbox-menu li label:focus {
+			background-color: #f5f5f5;
+		}
+
+		.checkbox-menu li.active label:hover,
+		.checkbox-menu li.active label:focus {
+			background-color: #b8b8ff;
+		}
+	</style>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+	<div class="container">
+		<br>
+		<h4>Home</h4>
+		<br>
+		<a href="/login/" class="btn btn-primary">Login</a>
+		<a href="/signup/" class="btn btn-primary">Sign Up</a>
+		<br>
+		<br>
+		<form action="/notifypost/" method="POST" action="" role="form" data-toggle="validator" novalidate="true">
+			<div class="form-group">
+			  <label for="exampleInput"><b>Topics</b></label>
+			  {% for item in topicList %}
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value={{item}} name="checkbox" id="flexCheckDefault">
+					<label class="form-check-label" for="flexCheckDefault">{{item}}</label>
+				</div>
+			   {% endfor %}
+			</div>
+			<button type="submit" class="btn btn-primary" name="submit_button" value="subscribe">Notify</button>
+			<!--<a href="/unsubscribe/?name={{name}}&username={{username}}" class="btn btn-primary">Unsubscribe</a>-->
+		</form>
+		{% if msg %}
+			<div style="color:rgb(0, 0, 0)">{{ msg }}</div>
+		{% endif %}
+	</div>
+</body>
+</html>
+{% endblock %}
