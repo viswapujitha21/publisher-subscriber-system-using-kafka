@@ -1,0 +1,8 @@
+kafka
+kafka-shell
+PyPubSub
+mysql-connector-python
+requests
+Flask==0.10.1
+db-sqlite3
+Flask-RESTful
